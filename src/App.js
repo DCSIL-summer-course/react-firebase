@@ -7,6 +7,8 @@ import thunkMiddleware from 'redux-thunk';
 
 import rootReducer from './reducers/index.js';
 import SignIn from './components/SignIn.js';
+import Messages from './components/Messages.js';
+import SendMessage from './components/SendMessage.js';
 
 const store = createStore(
   rootReducer,
@@ -27,9 +29,8 @@ class App extends Component {
       <Provider store={store}>
         <div>
           <SignIn />
-          <h1 style={{color: 'blue'}}>
-            Hello World
-          </h1>
+          <Messages />
+          <SendMessage />
         </div>
       </Provider>
     );

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 import { connect } from 'react-redux';
 
 import { signIn } from '../actions/userActions.js';
@@ -18,7 +17,6 @@ class SignIn extends Component {
 
   onSubmit(){
     this.props.signIn(this.state.name);
-    console.log(`submit: ${this.state.name}`);
   }
 
   render(){
@@ -28,6 +26,7 @@ class SignIn extends Component {
       styles.modalOuter,
       {display: display}
     );
+
     return (
       <div style={modalOuter}>
         <div style={styles.modalInner}>
@@ -58,8 +57,7 @@ const styles = {
     top: 0,
     left: 0,
     textAlign: 'center',
-    backgroundColor: '#ccc',
-    opacity: 0.8
+    backgroundColor: '#ccc'
   },
   modalInner: {
     width: '230px',
