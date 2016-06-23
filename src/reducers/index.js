@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
 
+import userReducer from './userReducer.js';
+
 const rootReducer = combineReducers({
-  user: () => { return {};},
+  user: userReducer,
   todos: () => []
 });
 

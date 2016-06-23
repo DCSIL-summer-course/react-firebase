@@ -14,6 +14,13 @@ const store = createStore(
   applyMiddleware(thunkMiddleware)
 );
 
+if (module.hot) {
+  module.hot.accept('./reducers', () =>{
+    const nextRootReducer = require('./reducers/index')
+    store.replaceReducer(nextRootReducer);
+  });
+}
+
 class App extends Component {
   render(){
     return (
