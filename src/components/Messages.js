@@ -1,29 +1,35 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const MESSAGES=[
-  {key: '1', userName: 'Ted', text: 'hello world', timeStamp: Date.now()},
-  {key: '2', userName: 'Maria', text: 'Why would you?', timeStamp: Date.now() - 10000},
-  {key: '3', userName: 'Liam', text: 'Wooooo', timeStamp: Date.now() - 15000, isMe: true},
-  {key: '4', userName: 'Mark', text: 'Hello Universe...', timeStamp: Date.now() - 20000}
-];
 
-function Messages({messages=MESSAGES}){
+
+function Messages({messages}){
   var meStyle = {float: 'right', backgroundColor: '#2291FA', color: '#fff'};
   return (
     <div>
       <ul style={styles.messageOuter}>
-        {messages.map((message) => {
+        {messages.map((message, i) => {
           var f = message.isMe ?  meStyle : {};
           var style = Object.assign({}, styles.message, f);
+          var last = i == messages.length - 1;
+          console.log(last);
           return (
-            <li key={message.key} style={style}>
+            <li
+              key={message.key}
+              style={style}
+              ref={(li) => {
+                if(last && li){
+                  li.scrollIntoView();
+                }
+              }}
+            >
               <div>{message.userName}</div>
               <div>{message.text}</div>
               <div>{message.timeStamp}</div>
             </li>
           );
         })}
+        <li style={{clear: 'both'}}></li>
       </ul>
     </div>
   );
@@ -31,7 +37,7 @@ function Messages({messages=MESSAGES}){
 
 const styles = {
   messageOuter: {
-    margin: 0,
+    margin: '0 0 20px 0',
     padding: 0
   },
   message: {

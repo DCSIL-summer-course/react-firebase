@@ -57,7 +57,8 @@ const styles = {
     top: 0,
     left: 0,
     textAlign: 'center',
-    backgroundColor: '#ccc'
+    backgroundColor: '#ccc',
+    zIndex: 1
   },
   modalInner: {
     width: '230px',
