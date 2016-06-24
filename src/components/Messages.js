@@ -2,32 +2,37 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 
+const Message = ({message, style, isLast}) => {
+  return (
+    <li
+      style={style}
+      ref={(li) => {
+        if(isLast && li){
+          li.scrollIntoView();
+        }
+      }}
+    >
+      <div>{message.userName}</div>
+      <div>{message.text}</div>
+      <div>{message.timeStamp}</div>
+    </li>
+  );
+}
 
 function Messages({messages}){
-  var meStyle = {float: 'right', backgroundColor: '#2291FA', color: '#fff'};
   return (
     <div>
       <ul style={styles.messageOuter}>
         {messages.map((message, i) => {
-          var f = message.isMe ?  meStyle : {};
-          var style = Object.assign({}, styles.message, f);
-          var last = i == messages.length - 1;
-          console.log(last);
-          return (
-            <li
-              key={message.key}
-              style={style}
-              ref={(li) => {
-                if(last && li){
-                  li.scrollIntoView();
-                }
-              }}
-            >
-              <div>{message.userName}</div>
-              <div>{message.text}</div>
-              <div>{message.timeStamp}</div>
-            </li>
-          );
+          var stylesToMerge = message.isMe ?  styles.meStyle : {};
+          var style = Object.assign({}, styles.message, stylesToMerge);
+
+          return <Message
+            key={message.key}
+            message={message}
+            style={style}
+            isLast={i == messages.length - 1}
+          />
         })}
         <li style={{clear: 'both'}}></li>
       </ul>
@@ -48,6 +53,11 @@ const styles = {
     margin: '6px 0',
     float: 'left',
     width: '80%'
+  },
+  meStyle: {
+    float: 'right',
+    backgroundColor: '#2291FA',
+    color: '#fff'
   }
 }
 
