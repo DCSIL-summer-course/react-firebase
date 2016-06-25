@@ -4,11 +4,11 @@ import { sendMessage } from '../actions/messageActions.js';
 
 class SendMessage extends Component {
   constructor(props){
-    console.log(props);
     super(props);
     this.state = {
       message: ''
     };
+
     document.onkeydown = this.onKeyDown.bind(this);
   }
 
@@ -28,6 +28,10 @@ class SendMessage extends Component {
     if(event.code && event.code == 'Enter'){
       this.onSend();
     }
+  }
+
+  componentWillUnmount(){
+    document.onkeydown = null;
   }
 
   render(){
