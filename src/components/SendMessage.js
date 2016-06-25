@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import { sendMessage } from '../actions/messageActions.js';
 
 class SendMessage extends Component {
   constructor(props){
+    console.log(props);
     super(props);
     this.state = {
       message: ''
     };
+    document.onkeydown = this.onKeyDown.bind(this);
   }
 
   onMessageChange(e){
@@ -19,7 +20,13 @@ class SendMessage extends Component {
     var message = this.state.message.trim();
     this.setState({message: ''});
     if(message){
-      this.props.sendMessage(this.props.name, this.state.message);
+      this.props.sendMessage(this.props.name, message);
+    }
+  }
+
+  onKeyDown(event){
+    if(event.code && event.code == 'Enter'){
+      this.onSend();
     }
   }
 

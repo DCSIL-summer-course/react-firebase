@@ -1,18 +1,3 @@
-.modal-enter {
-  opacity: 0.01;
-  transition: opacity 2s ease-in;
-}
-
-.modal-enter.modal-enter-active {
-  opacity: 1;
-}
-
-.modal-leave {
-  opacity: 1;
-  transition: opacity 2s ease-in;
-}
-
-.modal-leave.modal-leave-active {
-  opacity: 0.01;
-
+body {
+  font-family: verdana;
 }

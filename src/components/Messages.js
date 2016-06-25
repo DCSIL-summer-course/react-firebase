@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { FormattedRelative } from 'react-intl';
 
 
 const Message = ({message, style, isLast}) => {
@@ -12,9 +13,11 @@ const Message = ({message, style, isLast}) => {
         }
       }}
     >
-      <div>{message.userName}</div>
+      <div style={{fontSize: '85%', paddingBottom: '5px', textAlign: 'right'}}>
+        {message.userName}&nbsp;
+        (<FormattedRelative value={new Date(message.timeStamp)} />)
+      </div>
       <div>{message.text}</div>
-      <div>{message.timeStamp}</div>
     </li>
   );
 }

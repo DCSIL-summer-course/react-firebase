@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
-
+import { IntlProvider } from 'react-intl';
 import rootReducer from './reducers/index.js';
 import SignIn from './components/SignIn.js';
 import Messages from './components/Messages.js';
@@ -26,13 +26,15 @@ if (module.hot) {
 class App extends Component {
   render(){
     return (
-      <Provider store={store}>
-        <div>
-          <SignIn />
-          <Messages />
-          <SendMessage />
-        </div>
-      </Provider>
+      <IntlProvider locale="en">
+        <Provider store={store}>
+          <div>
+            <SignIn />
+            <Messages />
+            <SendMessage />
+          </div>
+        </Provider>
+      </IntlProvider>
     );
   }
 }
