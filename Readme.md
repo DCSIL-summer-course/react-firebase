@@ -183,3 +183,9 @@ export default function messageReducer(state=[], action){
 ```
 
 Your app should now be writing data to your Firebase server and reading from it!!!!!
+
+
+## Deploying your application
+```
+npm run build:prod
+```
