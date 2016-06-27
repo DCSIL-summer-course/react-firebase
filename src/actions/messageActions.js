@@ -1,11 +1,8 @@
-function sendMessage(name, message){
+function sendMessage(userName, text){
   return dispatch => {
     dispatch({
       type: 'SEND_MESSAGE',
-      message: {
-        name: name,
-        text: message
-      }
+      message: {userName, text}
     });
   }
 }

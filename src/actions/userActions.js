@@ -1,9 +1,9 @@
 
-function signIn(name){
+function signIn(userName){
   return dispatch => {
     dispatch({
       type: 'USER_SIGNIN',
-      name: name
+      userName
     });
   };
 }

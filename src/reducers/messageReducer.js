@@ -11,7 +11,7 @@ export default function messageReducer(state=MESSAGES, action){
     case 'SEND_MESSAGE':
       return [...state, {
         key: ++i,
-        userName: action.message.name,
+        userName: action.message.userName,
         text: action.message.text,
         isMe: true,
         timeStamp: Date.now()
