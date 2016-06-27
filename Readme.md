@@ -52,5 +52,24 @@ export default firebaseConfig;
 
 **IMPORTANT** do not just copy-and-paste the above code, you need to have your own values for each key.
 
-**IMPORTANT 2** if you decide to commit this code to github please add the following to your `.gitignore` file: `src/constants/firebase.js`. That prevents your API key, and other potentially secrete info, from making it into your code base
+**IMPORTANT 2** if you decide to commit this code to github please add the following to your `.gitignore` file: `src/constants/firebase.js`. That prevents your API key, and other potentially secrete info, from making it into your code base.
 
+### Changing Firebase authorization rules
+
+Normally you'd want to restrict parts of your app to authorized/signed-in users. For the simplicity of this workshop we're going to let anyone read/write to our Firebase database.
+
+In your new project on [https://firebase.google.com/](https://firebase.google.com/) click on the database option in the left menu:
+
+![Database option in menu](screens/database-menu.png)
+
+Then click on the "RULES" tab:
+
+![Database rules](screens/database-rules.png)
+
+Finally, update your rules to the following (then save the updates):
+
+![New database rules](screens/database-newrules.png)
+
+The above will allow anyone access to read/write from your database (this would not be desirable for a production application).
+
+Yay, we can now write some application code!
