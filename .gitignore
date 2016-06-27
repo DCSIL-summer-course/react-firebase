@@ -1,2 +1,4 @@
 .DS_Store
 node_modules
+firebase.config.js
+src/constants/firebase.js

@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { FormattedRelative } from 'react-intl';
 
-
 const Message = ({message, style, isLast}) => {
   return (
     <li
