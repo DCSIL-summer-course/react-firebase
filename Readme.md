@@ -186,6 +186,29 @@ Your app should now be writing data to your Firebase server and reading from it!
 
 
 ## Deploying your application
+
+Which includes running `npm install -g firebase-tools`
+```
+
+```
+When running `firebase init` selection the `Hosting` option
+
+`What do you want to use as your public directory?` enter: `dist`
+
+`Configure as a single-page app (rewrite all urls to /index.html)?` Y
+
+### To Deploy your applicaiton run
+
+We first build the application:
 ```
 npm run build:prod
 ```
+
+Then deploy
+```
+firebase deploy
+```
+
+
+
+
