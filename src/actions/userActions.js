@@ -1,13 +1,13 @@
 import { receiveMessages } from './messageActions.js';
 
-function signIn(name){
+function signIn(userName){
   return dispatch => {
     dispatch({
       type: 'USER_SIGNIN',
-      name: name
+      userName: userName
     });
 
-    receiveMessages(name)(dispatch);
+    receiveMessages(userName)(dispatch);
   };
 }
 

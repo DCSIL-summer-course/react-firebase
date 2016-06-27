@@ -1,10 +1,10 @@
 import firebase from 'firebase';
 
-function sendMessage(name, message){
+function sendMessage(userName, text){
   var db = firebase.database().ref().child('messages');
   var timeStamp = Date.now();
   return dispatch => {
-    db.push({userName:name, text:message, timeStamp}, (error) => {
+    db.push({userName, text, timeStamp}, (error) => {
       console.log(error);
     });
   }

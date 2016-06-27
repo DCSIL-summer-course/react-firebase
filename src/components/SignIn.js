@@ -7,16 +7,16 @@ class SignIn extends Component {
   constructor(props){
     super(props);
     this.state = {
-      name: ''
+      userName: ''
     }
   }
 
   onNameChange(e){
-    this.setState({name: e.target.value});
+    this.setState({userName: e.target.value});
   }
 
   onSubmit(){
-    this.props.signIn(this.state.name);
+    this.props.signIn(this.state.userName);
   }
 
   render(){
@@ -92,8 +92,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signIn : (name) => {
-      return signIn(name)(dispatch);
+    signIn : (userName) => {
+      return signIn(userName)(dispatch);
     }
   }
 }

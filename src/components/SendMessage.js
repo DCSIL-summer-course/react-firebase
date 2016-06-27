@@ -6,21 +6,21 @@ class SendMessage extends Component {
   constructor(props){
     super(props);
     this.state = {
-      message: ''
+      text: ''
     };
 
     document.onkeydown = this.onKeyDown.bind(this);
   }
 
   onMessageChange(e){
-    this.setState({message: e.target.value});
+    this.setState({text: e.target.value});
   }
 
   onSend(){
-    var message = this.state.message.trim();
-    this.setState({message: ''});
-    if(message){
-      this.props.sendMessage(this.props.name, message);
+    var text = this.state.text.trim();
+    this.setState({text: ''});
+    if(text){
+      this.props.sendMessage(this.props.userName, text);
     }
   }
 
@@ -40,7 +40,7 @@ class SendMessage extends Component {
         <input
           style={styles.input}
           type="text"
-          value={this.state.message}
+          value={this.state.text}
           onChange={this.onMessageChange.bind(this)}
         />
         <button
@@ -55,13 +55,13 @@ class SendMessage extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {name: state.user.name};
+  return {userName: state.user.userName};
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    sendMessage : (userName, message) => {
-      return sendMessage(userName, message)(dispatch);
+    sendMessage : (userName, text) => {
+      return sendMessage(userName, text)(dispatch);
     }
   }
 }

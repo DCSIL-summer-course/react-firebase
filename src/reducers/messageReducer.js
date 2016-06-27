@@ -12,8 +12,7 @@ function messagesToArray(messageObj, userName){
 export default function messageReducer(state=[], action){
   switch (action.type) {
     case 'RECEIVE_MESSAGES':
-      var messages = messagesToArray(action.messages, action.userName);
-      return [...state, ...messages];
+      return messagesToArray(action.messages, action.userName);
     case 'SEND_MESSAGE':
       return [...state, {
         key: ++i,
