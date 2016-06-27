@@ -124,7 +124,7 @@ To understand `var db = firebase.database().ref().child('messages');` it's impor
 
 We only want to start listening for messages once the user has entere their name. We'll call `receiveMessages` from the `userActions.js`:
 
-```javascript userActions.js
+```javascript
 import { receiveMessages } from './messageActions.js';
 
 function signIn(userName){
@@ -137,4 +137,49 @@ function signIn(userName){
     receiveMessages(userName)(dispatch);
   };
 }
+
+export { signIn };
 ```
+
+Once the user enters their name we'll call receiveMessages to start listening for messsages from Firebase.
+
+### Updating messageReducer.js
+
+Open `src/reducers/messageReducer.js` and add an extra `case`:
+
+```javascript
+  case 'RECEIVE_MESSAGES':
+    return messagesToArray(action.messages, action.userName);
+```
+
+Then above the `messageReducer()` create the `messagesToArray` function. Try to do this on your own. Here are some tips:
+
+1. `action.messages` will either be null (no messages), or an object where keys are the `key` (e.g. id) of the message, and the value is the message.
+2. Get all the keys using `Object.keys(yourObject)`.
+3. Each message in the returned array should have the following keys: `key`, `userName`, `text`, `timeStamp`, and `isMe`.
+4. `isMe` is true if and only if userName is equal to the passed in userName (e.g. `action.userName`).
+
+#### Cheat
+
+```javascript
+function messagesToArray(messageObj, userName){
+  if(messageObj == null){
+    return [];
+  }
+  var keys = Object.keys(messageObj);
+  return keys.map((key) => {
+    var obj = messageObj[key];
+    return Object.assign({key}, obj, {isMe: obj.userName == userName});
+  });
+}
+```
+
+#### Clean-up
+
+Now that you can create real data, delete the fake data in `messageReducer.js` (e.g. `const MESSAGES = ...`) and update the function signature to:
+
+```javascript
+export default function messageReducer(state=[], action){
+```
+
+Your app should now be writing data to your Firebase server and reading from it!!!!!
