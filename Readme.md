@@ -185,23 +185,37 @@ export default function messageReducer(state=[], action){
 Your app should now be writing data to your Firebase server and reading from it!!!!!
 
 
-## Deploying your application
+## Deploying your application to Firebase
 
-Which includes running `npm install -g firebase-tools`
-```
+In your new project on [https://firebase.google.com/](https://firebase.google.com/) click on the Hosting option in the left menu:
 
-```
-When running `firebase init` selection the `Hosting` option
+![](screens/hosting-menu.png)
 
-`What do you want to use as your public directory?` enter: `dist`
+Then click on the `GET STARTED` button (**IMPORTANT** read tips below):
 
-`Configure as a single-page app (rewrite all urls to /index.html)?` Y
+![](screens/hosting-start.png)
 
-### To Deploy your applicaiton run
+**IMPORTANT TIPS**
 
-We first build the application:
+* `npm install -g firebase-tools`
+* When running `firebase init` 
+  * select the `Hosting` option
+  * `What do you want to use as your public directory?` enter: `dist`
+  * `Configure as a single-page app (rewrite all urls to /index.html)?` enter: `y`
+
+### To Deploy your applicaiton
+
+#### Long instructions
+
+Build the application (webpack will concatenate all your JavaScript and transpile ES6 to ES5), then place conents into the `dist` folder.
 ```
 npm run build:prod
+```
+
+Copy `index.html` and `style.css`:
+
+```
+npm run copy:prod
 ```
 
 Then deploy
@@ -209,6 +223,16 @@ Then deploy
 firebase deploy
 ```
 
+To understand those commands open up `package.json` and example the `script` portion.
 
+#### Short instructions
+
+Instead of running 3 commands you can just run (which does all of the above):
+
+```
+npm run deploy
+```
+
+YAY!
 
 
