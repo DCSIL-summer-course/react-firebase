@@ -73,3 +73,68 @@ Finally, update your rules to the following (then save the updates):
 The above will allow anyone access to read/write from your database (this would not be desirable for a production application).
 
 Yay, we can now write some application code!
+
+## Firebase application code
+
+In `src/App.js` add the following code - this will initialize Firebase and connect your app the server.
+
+```javascript
+import firebaseConfig from './constants/firebase.js';
+import firebase from 'firebase';
+firebase.initializeApp(firebaseConfig);
+```
+
+There should be no errors in the console at this point. If there are errors check that your `./constants/firebase.js` file has the correct values.
+
+### Saving and loading messages from Firebase
+
+Now update `messageActions.js` to save messages to Firebase and  to "listen"/fetch messages from Firebase.
+
+```
+import firebase from 'firebase';
+
+function sendMessage(userName, text){
+  var db = firebase.database().ref().child('messages');
+  var timeStamp = Date.now();
+  return dispatch => {
+    db.push({userName, text, timeStamp}, (error) => {
+      console.log(error);
+    });
+  }
+}
+
+function receiveMessages(userName){
+  var ref = firebase.database().ref('messages/');
+
+  return dispatch => {
+    ref.on('value', (snapshot) => {
+      dispatch({ type: 'RECEIVE_MESSAGES',  messages: snapshot.val(), userName});
+    });
+  }
+}
+
+export { sendMessage, receiveMessages };
+```
+
+To understand `var db = firebase.database().ref().child('messages');` it's important to understand how Firebase stores data. Firebase stores data in a tree, with the root node being `firebase.database().ref()`. By adding `.child('messages')` we're telling Firebase that we'll be storing our messages in a child node of our database, that we'll name `'messages'`.
+
+`ref.on`, in `receiveMessages()` adds an event handler that will listen for updates to the `'messages'` node. Anytime new data is added to that node, Firebase will push it to any clients (e.g. browsers) that are listening to that change.
+
+### What should call receiveMessages()?
+
+We only want to start listening for messages once the user has entere their name. We'll call `receiveMessages` from the `userActions.js`:
+
+```javascript userActions.js
+import { receiveMessages } from './messageActions.js';
+
+function signIn(userName){
+  return dispatch => {
+    dispatch({
+      type: 'USER_SIGNIN',
+      userName: userName
+    });
+
+    receiveMessages(userName)(dispatch);
+  };
+}
+```
