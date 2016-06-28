@@ -12,7 +12,7 @@ For this workshop you'll start with a fully functioning React web application. D
 4. Finally run `npm start` to run the project.
 5. In your browser go to `http://localhost:3000/`, you should see 4 messages, and you should be able to "send" messages.
 
-* Windows users will `dir`
+*Windows users will use `dir`
 
 ## Adding Firebase
 
@@ -37,7 +37,7 @@ In the overview tab of your new project click the round pink button that has the
 
 *If you do not see the above screen, make sure you click on the project you just created.*
 
-After clicking on the above copy all that configuration information and paste it into a new file `src/constants/firebase.js` (you'll need to create the `constants` folder. Then update the code you just copy-and-pasted to look like:
+After clicking on the above, copy all that configuration information and paste it into a new file `src/constants/firebase.js` (you'll need to create the `constants` folder. Then update the code you just copy-and-pasted to look like:
 
 ```javascript
 const firebaseConfig = {
