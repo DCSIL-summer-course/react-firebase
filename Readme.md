@@ -37,7 +37,7 @@ In the overview tab of your new project click the round pink button that has the
 
 *If you do not see the above screen, make sure you click on the project you just created.*
 
-After clicking on the above, copy all that configuration information and paste it into a new file `src/constants/firebase.js` (you'll need to create the `constants` folder. Then update the code you just copy-and-pasted to look like:
+After clicking on the above, copy all that configuration information and paste it into a new file `src/constants/firebase.js` (you'll need to create the `constants` folder). Then update the code you just copy-and-pasted to look like:
 
 ```javascript
 const firebaseConfig = {
@@ -88,7 +88,7 @@ There should be no errors in the console at this point. If there are errors chec
 
 ### Saving and loading messages from Firebase
 
-Now update `messageActions.js` to save messages to Firebase and  to "listen"/fetch messages from Firebase.
+Now update `src/actions/messageActions.js` to save messages to Firebase and  to "listen"/fetch messages from Firebase.
 
 ```
 import firebase from 'firebase';
@@ -122,7 +122,7 @@ To understand `var db = firebase.database().ref().child('messages');` it's impor
 
 ### What should call receiveMessages()?
 
-We only want to start listening for messages once the user has entere their name. We'll call `receiveMessages` from the `userActions.js`:
+We only want to start listening for messages once the user has entered their name. We'll call `receiveMessages` from the `userActions.js`:
 
 ```javascript
 import { receiveMessages } from './messageActions.js';
@@ -145,7 +145,7 @@ Once the user enters their name we'll call receiveMessages to start listening fo
 
 ### Updating messageReducer.js
 
-Open `src/reducers/messageReducer.js` and add an extra `case`:
+Now that we're listening for incoming messages we must be able to process them in our message reducer. Open `src/reducers/messageReducer.js` and add an extra `case`:
 
 ```javascript
   case 'RECEIVE_MESSAGES':
@@ -182,7 +182,7 @@ Now that you can create real data, delete the fake data in `messageReducer.js` (
 export default function messageReducer(state=[], action){
 ```
 
-Your app should now be writing data to your Firebase server and reading from it!!!!!
+Your app should now be writing data to your Firebase server and reading from it!!!!! **When you first complete the above step you will have zero messages on Firebase, create a few messages to test out your app**.
 
 
 ## Deploying your application to Firebase
@@ -199,13 +199,15 @@ Then click on the `GET STARTED` button (**IMPORTANT** read tips below):
 
 * `npm install -g firebase-tools`
 * When running `firebase init` 
-  * select the `Hosting` option
+  * `What Firebase CLI features do you want to setup for this folder? ` select the `Hosting` option
+  * `What Firebase project do you want to associate as default?` select the project you created on Firebase.
+  * `What file should be used for Database Rules?` hit enter for default option.
   * `What do you want to use as your public directory?` enter: `dist`
   * `Configure as a single-page app (rewrite all urls to /index.html)?` enter: `y`
 
 ### To Deploy your applicaiton
 
-#### Long instructions
+#### "Long" instructions
 
 Build the application (webpack will concatenate all your JavaScript and transpile ES6 to ES5), then place conents into the `dist` folder.
 ```
@@ -223,7 +225,7 @@ Then deploy
 firebase deploy
 ```
 
-To understand those commands open up `package.json` and example the `script` portion.
+To understand those commands open up `package.json` and examine the `script` portion.
 
 #### Short instructions
 
