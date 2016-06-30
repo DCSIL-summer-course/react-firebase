@@ -9,6 +9,8 @@
     "build:prod": "NODE_ENV=production webpack --config webpack.config.prod.js",
     "build:prod:win": "set NODE_ENV=production&& webpack --config webpack.config.prod.js",
     "copy:prod": "cp index.html dist/index.html && cp style.css dist/style.css",
+    "copy:prod:win": "cp index.html dist\\index.html && cp style.css dist\\style.css",
+    "deploy": "npm run build:prod && npm run copy:prod && firebase deploy",
     "deploy": "npm run build:prod && npm run copy:prod && firebase deploy",
     "deploy:win": "npm run build:prod:win && npm run copy:prod && firebase deploy"
   },
