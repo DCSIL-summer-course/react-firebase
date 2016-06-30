@@ -52,7 +52,7 @@ export default firebaseConfig;
 
 **IMPORTANT** do not just copy-and-paste the above code, you need to have your own values for each key.
 
-**IMPORTANT 2** if you decide to commit this code to github please add the following to your `.gitignore` file: `src/constants/firebase.js`. That prevents your API key, and other potentially secrete info, from making it into your code base.
+**IMPORTANT 2** if you decide to commit this code to github please add the following to your `.gitignore` file: `src/constants/firebase.js`. That prevents your API key, and other potentially secret info, from making it into your code base.
 
 ### Changing Firebase authorization rules
 
