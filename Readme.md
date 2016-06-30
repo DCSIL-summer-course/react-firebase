@@ -20,7 +20,7 @@ On the web there are at least 3-4 ways of adding Firebase to a react web project
 
 ### Installing Firebase
 
-```
+```sh
 npm install firebase --save
 ```
 
@@ -90,7 +90,7 @@ There should be no errors in the console at this point. If there are errors chec
 
 Now update `src/actions/messageActions.js` to save messages to Firebase and  to "listen"/fetch messages from Firebase.
 
-```
+```javascript
 import firebase from 'firebase';
 
 function sendMessage(userName, text){
@@ -210,18 +210,23 @@ Then click on the `GET STARTED` button (**IMPORTANT** read tips below):
 #### "Long" instructions
 
 Build the application (webpack will concatenate all your JavaScript and transpile ES6 to ES5), then place conents into the `dist` folder.
-```
+```sh
 npm run build:prod
+```
+
+OR for Windows:
+```sh
+npm run build:prod:win
 ```
 
 Copy `index.html` and `style.css`:
 
-```
+```sh
 npm run copy:prod
 ```
 
 Then deploy
-```
+```sh
 firebase deploy
 ```
 
@@ -231,8 +236,13 @@ To understand those commands open up `package.json` and examine the `script` por
 
 Instead of running 3 commands you can just run (which does all of the above):
 
-```
+```sh
 npm run deploy
+```
+
+OR for Windows:
+```sh
+npm run deploy:win
 ```
 
 YAY!
